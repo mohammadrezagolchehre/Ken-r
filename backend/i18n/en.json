@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "locale": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "otp.sms.body": "Your Kenâr login code: {code}",
+  "invite.created": "Your invite code is ready",
+  "invite.accepted": "You are now beside each other 💞",
+  "invite.expired": "This invite code has expired",
+  "invite.invalid": "Invalid invite code",
+  "pair.disconnected": "Your connection has ended",
+  "pair.already_paired": "You are already connected with someone",
+  "error.unauthorized": "Unauthorized",
+  "error.not_found": "Not found",
+  "error.internal": "Internal server error",
+  "error.rate_limited": "Too many requests"
+}
