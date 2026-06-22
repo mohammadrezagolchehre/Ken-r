@@ -19,6 +19,9 @@
     <string name="pair_connected">شما اکنون کنار هم هستید 💞</string>
     <string name="pair_disconnect">پایان اتصال</string>
     <string name="pair_empty_state">هنوز با کسی متصل نیستید</string>
+    <string name="coming_soon">این بخش به‌زودی آماده می‌شود ✨</string>
+    <string name="cd_logo">نشان کِنار</string>
+    <string name="language_label">زبان</string>
 
     <!-- Mood widget -->
     <string name="mood_title">حال دلت</string>

@@ -10,17 +10,27 @@ import androidx.compose.runtime.Composable
 private val LightScheme = lightColorScheme(
     primary = KenarColors.LightPrimary,
     onPrimary = KenarColors.LightOnPrimary,
+    primaryContainer = KenarColors.LightPrimaryContainer,
+    onPrimaryContainer = KenarColors.LightOnPrimaryContainer,
     background = KenarColors.LightBackground,
     surface = KenarColors.LightSurface,
     onSurface = KenarColors.LightOnSurface,
+    surfaceVariant = KenarColors.LightSurfaceVariant,
+    onSurfaceVariant = KenarColors.LightOnSurfaceVariant,
+    outline = KenarColors.LightOutline,
 )
 
 private val DarkScheme = darkColorScheme(
     primary = KenarColors.DarkPrimary,
     onPrimary = KenarColors.DarkOnPrimary,
+    primaryContainer = KenarColors.DarkPrimaryContainer,
+    onPrimaryContainer = KenarColors.DarkOnPrimaryContainer,
     background = KenarColors.DarkBackground,
     surface = KenarColors.DarkSurface,
     onSurface = KenarColors.DarkOnSurface,
+    surfaceVariant = KenarColors.DarkSurfaceVariant,
+    onSurfaceVariant = KenarColors.DarkOnSurfaceVariant,
+    outline = KenarColors.DarkOutline,
 )
 
 /**

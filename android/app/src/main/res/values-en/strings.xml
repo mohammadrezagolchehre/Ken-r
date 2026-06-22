@@ -15,6 +15,9 @@
     <string name="pair_connected">You are now beside each other 💞</string>
     <string name="pair_disconnect">Disconnect</string>
     <string name="pair_empty_state">You are not connected with anyone yet</string>
+    <string name="coming_soon">This feature is coming soon ✨</string>
+    <string name="cd_logo">Kenâr logo</string>
+    <string name="language_label">Language</string>
 
     <!-- Mood widget -->
     <string name="mood_title">Your mood</string>
