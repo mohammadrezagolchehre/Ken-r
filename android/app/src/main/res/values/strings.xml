@@ -53,4 +53,11 @@
     <string name="error_network">اتصال به اینترنت برقرار نیست</string>
     <string name="error_invite_invalid">کد دعوت نامعتبر است</string>
     <string name="error_invite_expired">کد دعوت منقضی شده است</string>
+
+    <!-- Login -->
+    <string name="login_title">ورود به کِنار</string>
+    <string name="login_phone_hint">شماره موبایل</string>
+    <string name="login_otp_hint">کد تأیید</string>
+    <string name="login_send_otp_button">ارسال کد</string>
+    <string name="login_verify_button">تأیید</string>
 </resources>
