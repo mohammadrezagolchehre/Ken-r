@@ -188,11 +188,18 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [~] Auth: phone OTP + session — service (request/verify), Iranian phone normalize, session tokens, HTTP handlers, bearer middleware done & tested; Kavenegar SMS adapter TODO (dev uses log provider)
 - [~] Pair System: invite code, accept, shared space, disconnect — domain + use cases + HTTP handlers + in-memory repos done & tested; Postgres repos TODO
 - [~] Mood Widget — backend end-to-end slice (set/get + event publish + SSE deliver) done & tested; Android Glance wiring TODO
-- [ ] Love Tap Widget (+ tap-back loop)
-- [ ] Shared Drawing Widget
-- [ ] Shared Photo Widget (MinIO upload + downscale)
-- [ ] Countdown Widget
-- [ ] "Their World" widget
+- [~] Love Tap Widget (+ tap-back loop) — Android domain model + Glance
+  widget shell with quick actions/tap-back queue done; sync upload/delivery
+  wiring TODO with Android data layer
+- [~] Shared Drawing Widget — Android compact drawing wire model + passive
+  Glance renderer done; in-app drawing canvas and sync upload/delivery TODO
+- [~] Shared Photo Widget (MinIO upload + downscale) — Android photo metadata
+  wire model + downscaled cached Glance renderer done; MinIO upload/download
+  sync TODO
+- [~] Countdown Widget — Android countdown snapshot wire model + passive Glance
+  renderer done; date editor and daily sync refresh TODO
+- [~] "Their World" widget — Android partner world snapshot model + passive
+  Glance renderer done; location/weather sync and privacy UX TODO
 - [ ] Presence Pulse / Hold Hands
 - [ ] Sealed "Open When…" messages
 - [ ] Dual daily photo reveal
@@ -271,3 +278,74 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
   replace the in-memory repos and bus; Kavenegar SMS adapter; WebSocket transport
   alongside SSE; then wire the Android Mood Glance widget to the new endpoints
   (otp login → pair → set/get mood → stream-driven widget refresh).
+
+- **2026-06-30** — Session 3: Added the Android Love Tap widget vertical slice
+  without requiring local build tooling:
+  - android: `LoveTap` domain model with stable wire values and bilingual labels;
+    Glance `LoveTapWidget` registered in the manifest with widget metadata and a
+    picker preview.
+  - tap-back loop: widget can queue primary quick actions and `caught_it` replies
+    into Glance state for the future sync layer to encrypt/upload through the
+    existing generic `love_tap` widget backend kind.
+  - tests: added `LoveTapTest` for wire round-trips, uniqueness, and tap-back
+    exclusion from primary actions.
+  **Next session:** wire the Android data/sync layer so queued Love Taps and Mood
+  updates are uploaded/fetched through the existing auth/pair/widget endpoints,
+  then mark Mood/Love Tap complete once real delivery refreshes Glance state.
+
+- **2026-06-30** — Session 4: Added the Android Shared Drawing widget vertical
+  slice:
+  - android domain: `SharedDrawing`, `DrawingStroke`, and `DrawingPoint` with a
+    compact bounded wire format suitable for the existing generic `drawing`
+    widget endpoint.
+  - android widget: passive Glance `DrawingWidget` registered in the manifest,
+    with a small bitmap renderer for partner sketches plus widget picker
+    metadata/preview.
+  - localization/tests: added fa/en drawing strings and `SharedDrawingTest` for
+    wire round-trips, malformed payload handling, coordinate clamping, and empty
+    drawings.
+  **Next session:** add the in-app drawing canvas + Android sync writer so local
+  sketches are encrypted/uploaded and partner payloads refresh Glance state.
+
+- **2026-06-30** — Session 5: Added the Android Shared Photo widget vertical
+  slice:
+  - android domain: `SharedPhoto` metadata model with a compact wire format for
+    MinIO object keys, preview dimensions, optional captions, and content hashes.
+  - android widget: passive Glance `PhotoWidget` registered in the manifest,
+    rendering only a local cached/downscaled bitmap path written by the future
+    sync layer.
+  - downscale guardrails/tests: added `PhotoWidgetImageLoader` sample-size logic,
+    fa/en strings, widget picker metadata/preview, and tests for photo metadata
+    validation plus widget bitmap sampling.
+  **Next session:** implement the Android photo capture/pick + sync handoff, then
+  the MinIO backend adapter when external module fetch is available.
+
+- **2026-06-30** — Session 6: Added the Android Countdown widget vertical slice:
+  - android domain: `Countdown` snapshot model with bounded wire format for
+    title, target epoch-day, precomputed remaining days, as-of day, and optional
+    localized target label.
+  - android widget: passive Glance `CountdownWidget` registered in the manifest,
+    rendering only the snapshot written by the future sync layer rather than
+    doing date/calendar computation inside the widget.
+  - localization/tests: added fa/en countdown strings/plurals, widget picker
+    metadata/preview, and `CountdownTest` for round-trips, state mapping, and
+    malformed payload handling.
+  **Next session:** build the Android date editor + sync writer so shared dates
+  are uploaded and refreshed daily with locale/Jalali-aware labels.
+
+- **2026-06-30** — Session 7: Added the Android "Their World" widget vertical
+  slice and audited the five recently added widgets:
+  - backend: added `their_world` as a valid generic widget kind so future sync
+    can use `/v1/widgets/their_world` without schema changes.
+  - android domain: `TheirWorld`, `WeatherCondition`, and `DayNightState` with a
+    bounded wire format for partner location label, local time, UTC offset,
+    weather, temperature, day/night state, and observation time.
+  - android widget: passive Glance `TheirWorldWidget` registered in the manifest,
+    showing partner time, weather, and day/night from a precomputed snapshot.
+  - verification: re-parsed Android XML resources, checked layout text binding,
+    ran git whitespace checks, and reviewed Love Tap, Shared Drawing, Shared
+    Photo, Countdown, and Their World for passive rendering, bilingual
+    resources, widget metadata, and backend kind compatibility; no build
+    execution was possible in this environment.
+  **Next session:** implement Android sync/data layer foundations so Mood, Love
+  Tap, Drawing, Photo, Countdown, and Their World can start moving real payloads.
