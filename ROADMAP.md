@@ -193,7 +193,9 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
   wiring TODO with Android data layer
 - [~] Shared Drawing Widget — Android compact drawing wire model + passive
   Glance renderer done; in-app drawing canvas and sync upload/delivery TODO
-- [ ] Shared Photo Widget (MinIO upload + downscale)
+- [~] Shared Photo Widget (MinIO upload + downscale) — Android photo metadata
+  wire model + downscaled cached Glance renderer done; MinIO upload/download
+  sync TODO
 - [ ] Countdown Widget
 - [ ] "Their World" widget
 - [ ] Presence Pulse / Hold Hands
@@ -302,3 +304,16 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
     drawings.
   **Next session:** add the in-app drawing canvas + Android sync writer so local
   sketches are encrypted/uploaded and partner payloads refresh Glance state.
+
+- **2026-06-30** — Session 5: Added the Android Shared Photo widget vertical
+  slice:
+  - android domain: `SharedPhoto` metadata model with a compact wire format for
+    MinIO object keys, preview dimensions, optional captions, and content hashes.
+  - android widget: passive Glance `PhotoWidget` registered in the manifest,
+    rendering only a local cached/downscaled bitmap path written by the future
+    sync layer.
+  - downscale guardrails/tests: added `PhotoWidgetImageLoader` sample-size logic,
+    fa/en strings, widget picker metadata/preview, and tests for photo metadata
+    validation plus widget bitmap sampling.
+  **Next session:** implement the Android photo capture/pick + sync handoff, then
+  the MinIO backend adapter when external module fetch is available.

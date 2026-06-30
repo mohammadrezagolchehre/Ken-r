@@ -39,6 +39,12 @@
     <string name="drawing_updated">نقاشی تازه رسید</string>
     <string name="drawing_preview_mark">♡</string>
 
+    <!-- Shared Photo widget -->
+    <string name="photo_title">عکس مشترک</string>
+    <string name="photo_waiting">در انتظار اولین لحظه او…</string>
+    <string name="photo_content_description">آخرین عکس او</string>
+    <string name="photo_preview_mark">▧</string>
+
     <!-- Love Tap widget -->
     <string name="love_title">ضربان عاشقانه</string>
     <string name="love_i_love_you">دوستت دارم</string>
