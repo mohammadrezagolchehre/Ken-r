@@ -1,0 +1,4 @@
+ .../main/java/ir/kenar/ui/pairing/PairingScreen.kt | 108 [32m+++++++++++++++++++++[m
+ .../java/ir/kenar/ui/pairing/pairingViewModel.kt   |  57 [32m+++++++++++[m
+ android/app/src/main/res/values/strings.xml        |   9 [32m++[m
+ 3 files changed, 174 insertions(+)
