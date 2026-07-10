@@ -1,7 +1,6 @@
 package ir.kenar.widget.lovetap
 
 import android.content.Context
-import androidx.datastore.preferences.core.toMutablePreferences
 import androidx.glance.GlanceId
 import androidx.glance.action.ActionParameters
 import androidx.glance.appwidget.action.ActionCallback
@@ -26,11 +25,9 @@ class LoveTapActionCallback : ActionCallback {
         val tap = LoveTap.fromWire(wireValue) ?: return
 
         updateAppWidgetState(context, PreferencesGlanceStateDefinition, glanceId) { prefs ->
-            prefs.toMutablePreferences().apply {
-                this[LoveTapWidget.OUTGOING_TAP_KEY] = tap.wireValue
-                this[LoveTapWidget.OUTGOING_TAP_CREATED_AT_KEY] = System.currentTimeMillis().toString()
-                this[LoveTapWidget.LAST_SENT_TAP_KEY] = tap.wireValue
-            }
+            prefs[LoveTapWidget.OUTGOING_TAP_KEY] = tap.wireValue
+            prefs[LoveTapWidget.OUTGOING_TAP_CREATED_AT_KEY] = System.currentTimeMillis().toString()
+            prefs[LoveTapWidget.LAST_SENT_TAP_KEY] = tap.wireValue
         }
         LoveTapWidget().update(context, glanceId)
     }
