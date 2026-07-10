@@ -60,4 +60,13 @@
     <string name="login_otp_hint">کد تأیید</string>
     <string name="login_send_otp_button">ارسال کد</string>
     <string name="login_verify_button">تأیید</string>
+
+    <!--Pairing-->
+    <string name="pairing_title">اتصال به partner</string>
+    <string name="pairing_your_code_label">کد دعوت خودت</string>
+    <string name="pairing_create_button">ساخت کد دعوت</string>
+    <string name="pairing_or">یا</string>
+    <string name="pairing_enter_code_label">کد partner رو داری؟</string>
+    <string name="pairing_code_hint">کد دعوت</string>
+    <string name="pairing_accept_button">اتصال</string>
 </resources>
